@@ -27,6 +27,7 @@ float angle_to_duty_cycle(float angle, float frequency){
 uint8_t init_servo(uint8_t pin){
 	gpio_init(); // Doesnt matter if it started already
 	uint8_t channel = gpio_pwm_channel(pin);
+	printf("Channel %d\n", channel);
 	if(channel){
 		gpio_pwm_clock_freq(channel, servo_frequency); 	// 50Hz clock
 		gpio_pwm_duty_cycle(channel, 0.01);		// 1% duty cycle on channel, disabling it

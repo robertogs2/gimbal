@@ -15,6 +15,8 @@
 // The servo library is a wrapper for servos that uses gpio library, here is an example
 int main(int argc, char const *argv[]) {
     gpio_init();
+
+    init_servo(13);
     init_servo(12);
     init_servo(13);
     float angle = 0;
@@ -24,7 +26,5 @@ int main(int argc, char const *argv[]) {
 		write_servo(12, angle);
 		write_servo(13, angle);
     }
-
-
     return 0;
 }

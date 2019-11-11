@@ -44,6 +44,7 @@ volatile unsigned int *pwmclkdiv;
 
 static pwm_status_t *pwm_status;
 static uint8_t started = 0;
+static uint8_t pwm_forced_started = 0;
 // Initialize pointers
 void gpio_init() {
 	if(started != 1){
@@ -86,6 +87,7 @@ void gpio_init() {
 	    pwmclkdiv = clkbase + 0x29;	// offset 0xa4 / 4 = 0x29
 
 	    pwm_status = (pwm_status_t*) malloc(sizeof(pwm_status_t));
+	    pwm_forced_started = 0;
 	    started = 1;
 	}
 
@@ -236,6 +238,8 @@ void gpio_pwm_start() {
     if(DEBUG) printf("Clock started\n");
 }
 void set_pwm_mode(uint8_t channel, uint8_t ms_mode){ // 0 for PWM, 1 for MS
+	printf("Setting channel %d\n", channel);
+	printf("Start: %X\n", *pwmctl);
 	if(channel == 1){
 		if(ms_mode) *pwmctl |= 0x0081; // Channel 1 M/S mode, no FIFO, PWM mode, enabled
 		else *pwmctl &= 0xFF01; // Channel 1 PWM algorithm mode, no FIFO, PWM mode, enabled
@@ -249,12 +253,13 @@ void set_pwm_mode(uint8_t channel, uint8_t ms_mode){ // 0 for PWM, 1 for MS
 		if(ms_mode) *pwmctl = 0x8181; // Both channels M/S mode, no FIFO, PWM mode, enabled
 		else *pwmctl = 0x0101; // Both channels PWM algorithm mode, no FIFO, PWM mode, enabled
 	}
-	
+	printf("End: %X\n", *pwmctl);
 }
 /*Sources:
 0 = GND, 1 = oscillator, 2 = testdebug0, 3 = testdebug1
 4 = PLLA per, 5 = PLLC per, 6 = PLLD per, 7 = HDMI auxiliary, 8-15 = GND*/
 void gpio_pwm_clock(uint8_t source, uint16_t divisor) { // Divisor goes from 0 to 2^12-1
+	unsigned int pwmctl_ = *pwmctl; 
     gpio_pwm_stop();
     if(DEBUG) printf("Setting the source to %d, divided by %d\n", source, divisor);
     // Source and division set, page 107
@@ -265,7 +270,7 @@ void gpio_pwm_clock(uint8_t source, uint16_t divisor) { // Divisor goes from 0 t
     *pwmclkcntl = PWM_CLK_PASSWORD | (source_); // Sets source in control
     *pwmclkcntl = PWM_CLK_PASSWORD | (*pwmclkcntl) | (1 << 9); // Sets mash 1
     gpio_pwm_start();
-    set_pwm_mode(0, 0); // Both channels in pwm
+    *pwmctl = pwmctl_;
 }
 
 uint8_t gpio_clock_busy() {
@@ -277,11 +282,12 @@ pwm_status_t* gpio_pwm_get_status() {
 
 // Scale is not big enough, therefore is frequency is less than 500Khz, PWM range change is disabled and should use MS mode
 void gpio_pwm_clock_freq(uint8_t channel, float frequency) {
+	
     if(frequency <= 500 * 1000) { // If less than 500kHz, force MS
     	// Sets clock frequency for 500kHz
     	float real_frequency = 500*1000;
         uint16_t divisor = 1000;
-        gpio_pwm_clock(6, divisor);
+        gpio_pwm_clock(6, divisor); 				
         pwm_status->current_frequency=real_frequency;
         unsigned int n = real_frequency/frequency; // Calculates T' = n*T, this is the range
 
@@ -307,6 +313,7 @@ void gpio_pwm_clock_freq(uint8_t channel, float frequency) {
     } else {
         uint16_t divisor = PLLD_FREQ / frequency;
         gpio_pwm_clock(6, divisor);
+        set_pwm_mode(0, 0); // Both channels in pwm
         pwm_status->current_frequency=frequency;
         pwm_status->forced_range1=0;
 		pwm_status->forced_range2=0;
