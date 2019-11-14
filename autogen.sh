@@ -14,7 +14,7 @@ echo
 echo "1. cd bin"
 echo "2. run configure:"
 echo -e "\t Run ../configure --prefix=\$PWD/usr  for pc."
-echo "If crosscompilation requiered, run . /opt/poky/<version>/environment..."
+echo "If crosscompilation required, run . /opt/poky/<version>/environment..."
 echo -e "\t Run ../configure --prefix=\$PWD/usr --host=arm-poky-linux-gnueabi for cross compile."
 echo "3. Then type 'make' to compile $package."
 echo "4. make install"
@@ -22,6 +22,6 @@ echo
 echo
 echo "IF CROSS COMPILE: to install on raspberry:"
 echo -e "\t Insert sd card."
-echo -e "\t sudo cp -r usr /media/<usr>/<rasp file system>/usr."
+echo -e "\t sudo cp -r usr/* /media/<usr>/<rasp file system>/usr."
 echo
-echo
+echo "IF DISTCHECK AND CROSSCOMPILE USE make distcheck     DISTCHECK_CONFIGURE_FLAGS=\"--host=arm-poky-linux-gnueabi\""
