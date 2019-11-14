@@ -1,5 +1,8 @@
 #!/bin/bash -x
 #scp ../wpa_supplicant.conf to the /etc/wpa_supplicant.conf in the rasp
+mknod /dev/spi c 60 0
+chmod 666 /dev/spi
+insmod /lib/modules/extra/spi.ko
 ifup wlan0
 myip="$(ifconfig | grep -A 1 'wlan0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
 ### RPI3 Stream JPEG

@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/roberto/Documents/github/gimbal/bin/usr/lib'
+libdir='/home/roberto/Documents/github/gimbal/gpio/bin/usr/lib'

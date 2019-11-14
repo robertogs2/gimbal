@@ -88,7 +88,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = arm-poky-linux-gnueabi
-bin_PROGRAMS = libgpiotest$(EXEEXT)
+bin_PROGRAMS = main$(EXEEXT)
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -104,9 +104,9 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_libgpiotest_OBJECTS = libgpiotest.$(OBJEXT)
-libgpiotest_OBJECTS = $(am_libgpiotest_OBJECTS)
-libgpiotest_DEPENDENCIES = $(top_builddir)/lib/libgpio.la
+am_main_OBJECTS = main.$(OBJEXT)
+main_OBJECTS = $(am_main_OBJECTS)
+main_DEPENDENCIES = $(top_builddir)/lib/libgpio.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
@@ -145,8 +145,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libgpiotest_SOURCES)
-DIST_SOURCES = $(libgpiotest_SOURCES)
+SOURCES = $(main_SOURCES)
+DIST_SOURCES = $(main_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -174,13 +174,13 @@ CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/roberto/Documents/github/gimbal/build-aux/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/roberto/Documents/github/gimbal/gpio/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = arm-poky-linux-gnueabi-ar
-AUTOCONF = ${SHELL} /home/roberto/Documents/github/gimbal/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /home/roberto/Documents/github/gimbal/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /home/roberto/Documents/github/gimbal/build-aux/missing automake-1.15
+AUTOCONF = ${SHELL} /home/roberto/Documents/github/gimbal/gpio/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /home/roberto/Documents/github/gimbal/gpio/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /home/roberto/Documents/github/gimbal/gpio/build-aux/missing automake-1.15
 AWK = gawk
 CC = arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=neon-vfpv4 -mfloat-abi=hard -mcpu=cortex-a7 --sysroot=/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi
 CCDEPMODE = depmode=gcc3
@@ -214,7 +214,7 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-MAKEINFO = ${SHELL} /home/roberto/Documents/github/gimbal/build-aux/missing makeinfo
+MAKEINFO = ${SHELL} /home/roberto/Documents/github/gimbal/gpio/build-aux/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = arm-poky-linux-gnueabi-nm
@@ -237,10 +237,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = arm-poky-linux-gnueabi-strip
 VERSION = 1.0
-abs_builddir = /home/roberto/Documents/github/gimbal/bin/src
-abs_srcdir = /home/roberto/Documents/github/gimbal/bin/../src
-abs_top_builddir = /home/roberto/Documents/github/gimbal/bin
-abs_top_srcdir = /home/roberto/Documents/github/gimbal/bin/..
+abs_builddir = /home/roberto/Documents/github/gimbal/gpio/bin/src
+abs_srcdir = /home/roberto/Documents/github/gimbal/gpio/bin/../src
+abs_top_builddir = /home/roberto/Documents/github/gimbal/gpio/bin
+abs_top_srcdir = /home/roberto/Documents/github/gimbal/gpio/bin/..
 ac_ct_AR = 
 ac_ct_CC = 
 ac_ct_DUMPBIN = 
@@ -269,7 +269,7 @@ host_vendor = poky
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/roberto/Documents/github/gimbal/build-aux/install-sh
+install_sh = ${SHELL} /home/roberto/Documents/github/gimbal/gpio/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -278,7 +278,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/roberto/Documents/github/gimbal/bin/usr
+prefix = /home/roberto/Documents/github/gimbal/gpio/bin/usr
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -291,8 +291,8 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ../..
 AM_CPPFLAGS = -I$(top_srcdir)/include
-libgpiotest_SOURCES = libgpiotest.c
-libgpiotest_LDADD = $(top_builddir)/lib/libgpio.la
+main_SOURCES = main.c
+main_LDADD = $(top_builddir)/lib/libgpio.la
 all: all-am
 
 .SUFFIXES:
@@ -376,9 +376,9 @@ clean-binPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-libgpiotest$(EXEEXT): $(libgpiotest_OBJECTS) $(libgpiotest_DEPENDENCIES) $(EXTRA_libgpiotest_DEPENDENCIES) 
-	@rm -f libgpiotest$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(libgpiotest_OBJECTS) $(libgpiotest_LDADD) $(LIBS)
+main$(EXEEXT): $(main_OBJECTS) $(main_DEPENDENCIES) $(EXTRA_main_DEPENDENCIES) 
+	@rm -f main$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(main_OBJECTS) $(main_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -386,7 +386,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/libgpiotest.Po
+include ./$(DEPDIR)/main.Po
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

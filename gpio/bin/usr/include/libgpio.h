@@ -44,6 +44,8 @@ typedef struct{
 	uint8_t forced_range2;
 }pwm_status_t;
 
+void gpio_set_mode();
+
 // Set modes functions
 void gpio_pin_set_mode(uint8_t pin, uint8_t mode);
 void gpio_pin_set_all_modes(uint8_t mode);

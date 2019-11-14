@@ -16,6 +16,7 @@ static unsigned GPIO_TIMER    	= GPIO_PERI_BASE + 0x0000B000;
 static unsigned GPIO_PWM    	= GPIO_PERI_BASE + 0x0020C000;
 
 volatile unsigned int *gpfsel0;
+volatile unsigned int *gpfsel1;
 volatile unsigned int *gpset0;
 volatile unsigned int *gpclr0;
 volatile unsigned int *gplev0;
@@ -60,6 +61,7 @@ void gpio_init() {
 	    if (pwmctl == MAP_FAILED) errx(1, "Error during mapping PWM");
 	    if (clkbase == MAP_FAILED) errx(1, "Error during mapping CLOCK");
 	    //Set regs pointers for gpio
+        gpfsel1 = gpfsel0 + 0x01;    // offset 0x1C / 4 = 0x07
 	    gpset0 = gpfsel0 + 0x07; 	// offset 0x1C / 4 = 0x07
 	    gpclr0 = gpfsel0 + 0x0A; 	// offset 0x28 / 4 = 0x0A
 	    gplev0 = gpfsel0 + 0x0D; 	// offset 0x34 / 4 = 0x0D
@@ -90,8 +92,16 @@ void gpio_init() {
 	    pwm_forced_started = 0;
 	    started = 1;
 	}
+}
 
 
+// Initialices SPI
+void gpio_set_mode(){
+    *gpfsel0 = (*gpfsel0 & ~(0x7 << 7*3)) | (0x4 << 7*3); //GPIO7 (CS1) takes alternate fun 0
+    *gpfsel0 = (*gpfsel0 & ~(0x7 << 8*3)) | (0x4 << 8*3); //GPIO8 (CS0) takes alternate fun 0
+    *gpfsel0 = (*gpfsel0 & ~(0x7 << 9*3)) | (0x4 << 9*3); //GPIO9 (MISO) takes alternate fun 0
+    *gpfsel1 = (*gpfsel1 & ~(0x7 << 0*3)) | (0x4 << 0*3); //GPIO10 (MOSI) takes alternate fun 0
+    *gpfsel1 = (*gpfsel1 & ~(0x7 << 1*3)) | (0x4 << 1*3); //GPIO11 (SCLK) takes alternate fun 0
 }
 
 // Set modes functions
