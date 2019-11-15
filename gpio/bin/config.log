@@ -45,7 +45,6 @@ PATH: /usr/games
 PATH: /usr/local/games
 PATH: /snap/bin
 PATH: /usr/local/cuda/bin
-PATH: /usr/local/cuda/bin
 
 
 ## ----------- ##
