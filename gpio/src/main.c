@@ -19,7 +19,7 @@ char read_buff1[4];
 char buffer[128];
 #define BUFFSIZE 50
 
-#define FILTER_BUFFER_SIZE 12
+#define FILTER_BUFFER_SIZE 25
 
 char buffstr[BUFFSIZE];
 
@@ -122,8 +122,8 @@ int main(int argc, char const *argv[]) {
         // Process string
         process_string(buffstr);
 
-        write_servo(12, pitch_servo-pitch_mpu);
-        write_servo(13, roll_servo-roll_mpu);
+        write_servo(12, pitch_servo-1.25*pitch_mpu);
+        write_servo(13, roll_servo-1.25*roll_mpu);
     }
 
     return 0;
