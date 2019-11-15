@@ -53,7 +53,36 @@ main.o: ../../src/main.c \
  /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio_lim.h \
  /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/sys_errlist.h \
  /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio.h \
- ../../include/libservo.h
+ ../../include/libservo.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdlib.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitflags.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitstatus.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-32.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-common.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/sys/types.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/clock_t.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/clockid_t.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/time_t.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/timer_t.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/endian.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/endian.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/endian-32.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/byteswap.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/uintn-identity.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/sys/select.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/select.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/sigset_t.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__sigset_t.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/struct_timeval.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes-32.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/thread-shared-types.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes-arch.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes-arch-32.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/alloca.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib-bsearch.h \
+ /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib-float.h
 
 /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdc-predef.h:
 
@@ -164,3 +193,61 @@ main.o: ../../src/main.c \
 /opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio.h:
 
 ../../include/libservo.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdlib.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitflags.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitstatus.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-32.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-common.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/sys/types.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/clock_t.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/clockid_t.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/time_t.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/timer_t.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/endian.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/endian.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/endian-32.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/byteswap.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/uintn-identity.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/sys/select.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/select.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/sigset_t.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__sigset_t.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/struct_timeval.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes-32.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/thread-shared-types.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes-arch.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/pthreadtypes-arch-32.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/alloca.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib-bsearch.h:
+
+/opt/poky/2.7.1/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib-float.h:

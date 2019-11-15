@@ -5,6 +5,7 @@
 #include <libgpio.h>
 #include <stdio.h>
 #include <libservo.h>
+#include <stdlib.h>     /* atof */
 // To use pwm, set a clock to a channel, set a pin from that channel as PWM 
 // Set whatever duty cycle you want as a fraction from 0 to 1, example to blink 5s  on PIN 12:
 // gpio_init();
@@ -15,10 +16,24 @@
 // The servo library is a wrapper for servos that uses gpio library, here is an example
 
 char read_buff1[4];
-
+char buffer[128];
 #define BUFFSIZE 50
 
+#define FILTER_BUFFER_SIZE 12
+
 char buffstr[BUFFSIZE];
+
+float filter_pitch[FILTER_BUFFER_SIZE];
+float filter_roll[FILTER_BUFFER_SIZE];
+
+float pitch_mpu = 0;
+float roll_mpu = 0;
+
+float pitch_servo = 120;
+float roll_servo = 90;
+
+int count_fpitch = 0;
+int count_froll = 0;
 
 void readData(uint8_t data, char* buff, FILE *fp) {
     fp = fopen("/dev/spi", "r+");
@@ -27,21 +42,53 @@ void readData(uint8_t data, char* buff, FILE *fp) {
     fclose(fp);
 }
 
-// void process_string(char* input, float& angle1, float& angle2){
-//     char buffer[10];
-//     int i = 0;
-//     while(input[i] && input[i] != ':'){
+float filter(float val, float* filter_buff, int *count) {
+    float sum = 0;
+    filter_buff[*count] = val;
+    *count = (*count + 1)%FILTER_BUFFER_SIZE;
+    for (int i = 0; i < FILTER_BUFFER_SIZE; ++i) {
+        sum += filter_buff[i];
+    }
+    return sum/FILTER_BUFFER_SIZE;
+}
 
-//     }
-// }
+void process_string(char* input){
+    int i = 0;
+    float f1 = 0;
+    float f2 = 0;
+    while(input[i] && input[i++] != '*');// Fake parsing
+    int ii = 0;
+    // First number parsing
+    while(input[i] && input[i] != ':'){
+        buffer[ii++] = input[i];
+        i++;
+    }
+    i++;
+    buffer[ii] = 0;
+    f1 = atof(buffer);
+    ii=0;
+    // Second number parsing
+    while(input[i]){
+        buffer[ii++] = input[i];
+        i++;
+    }
+    buffer[ii] = 0;
+    f2 = atof(buffer);
+
+    pitch_mpu = filter(f1, filter_pitch, &count_fpitch);
+    roll_mpu = filter(f2, filter_roll, &count_froll);
+
+    //printf("%f : %f\n", pitch_mpu, roll_mpu);
+}
 
 int main(int argc, char const *argv[]) {
     gpio_init();
     gpio_set_mode();
 
-  //   init_servo(13);
-  //   init_servo(12);
-  //   init_servo(13);
+    init_servo(13);
+    init_servo(12);
+    write_servo(12, pitch_servo); //Pitch Servo
+    write_servo(13, roll_servo); //Roll Servo
   //   float angle = 0;
   //   while(1){
   //   	printf("Enter angle: ");
@@ -70,10 +117,13 @@ int main(int argc, char const *argv[]) {
             usleep(100);
         }
 
-        printf("%s\n", buffstr);
+        //printf("%s\n", buffstr);
         // Process that string
         // Process string
+        process_string(buffstr);
 
+        write_servo(12, pitch_servo-pitch_mpu);
+        write_servo(13, roll_servo-roll_mpu);
     }
 
     return 0;
